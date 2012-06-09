@@ -1,0 +1,30 @@
+add ./test/io/mail3
+search From - To - Before - After - Elbasan I Albania Librazhd
+search From - To - Before - After - attached returned Norfolk SP York
+search From - To - Before - After - Councils Summer I
+add ./test/io/mail1
+search From - To - Before - After - a
+remove 2
+add ./test/io/mail2
+search From - To - Before - After 18 May 2012 at 16:12 plus recorded It the Long
+remove 2
+remove 3
+search From Teresa To - Before - After - The org
+add ./test/io/mail4
+remove 2
+search From - To - Before - After - NotExistingWord
+add ./test/io/mail2
+search From - To - Before - After - stumbles with an made
+search From - To Natasha Before - After - on
+search From - To - Before - After - primarily Murphy time it actor
+search From - To - Before - After - the
+add ./test/io/mail3
+search From Teresa To - Before - After - Cam Depart the Council
+remove 3
+remove 1
+remove 2
+search From - To - Before 18 May 2012 at 16:12 After - addition the reached
+search From - To - Before - After - read
+search From - To - Before - After - between single Style in
+remove 1
+search From - To - Before - After - Librazhd I Polis
