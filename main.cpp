@@ -1,0 +1,46 @@
+#include <cstdio>
+#include <cstring>
+#include <cstdlib>
+#include <ctime>
+#include <cctype>
+
+#define STREND ('\0')
+#define BUFFER_SIZE (1000000)
+#define NAME_SIZE (1000)
+int mail_counter=0;
+char input_buffer[BUFFER_SIZE];
+char output_buffer[BUFFER_SIZE];
+
+#include "io.cpp"
+#include "index.cpp"
+#include "command.cpp"
+
+void input_cmd(char cmd[]) {
+    if(strncmp(cmd, "add", 3) == 0) {
+        add_mail(&cmd[4]);
+    }
+    else if(strncmp(cmd, "remove", 6) == 0) {
+        int id=get_int(&cmd[7]);
+        remove_mail(id);
+    }
+    else {
+        puts(cmd);
+        char *from_ptr=&cmd[12];
+        char *to_ptr=strstr(from_ptr, "To")+3;
+        char *before_ptr=strstr(to_ptr, "Before")+7;
+        char *after_ptr=strstr(before_ptr, "After")+6;
+        char *keywords_ptr;
+        if(*after_ptr == '-')
+            keywords_ptr = after_ptr+2;
+        else
+            keywords_ptr=strstr(after_ptr, ":")+4;
+        *(to_ptr-4) = *(before_ptr-8) = *(after_ptr-7) = *(keywords_ptr-1) = STREND;
+        search_mails(from_ptr, to_ptr, before_ptr, after_ptr, keywords_ptr);
+    }
+}
+
+int main() {
+    while(gets(input_buffer)) {
+        input_cmd(input_buffer); 
+    }; 
+}
