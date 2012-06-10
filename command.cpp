@@ -35,6 +35,7 @@ void add_mail(char file_name[]) {
             }
         } 
         p("Mail "); put_int(id); p(" added, you have "); put_int(mail_set.size()); p(" mails"); puts("");
+        fclose(fptr);
     }
     else {
         p("No file: "); p(file_name); p("!!!!\n");
