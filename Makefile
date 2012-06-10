@@ -1,4 +1,4 @@
-PP=g++ -O3 -Wall
+PP=g++ -O3 -Wall -Wno-deprecated
 CODES=main.cpp io.cpp command.cpp index.cpp
 
 .PHONY: main

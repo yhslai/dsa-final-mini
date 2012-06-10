@@ -1,15 +1,34 @@
+#include <iostream>
 #include <cstdio>
 #include <cstring>
 #include <cstdlib>
 #include <ctime>
 #include <cctype>
+#include <string>
+#include <set>
+#include <backward/hash_set>
+#include <backward/hash_map>
 
 #define STREND ('\0')
 #define BUFFER_SIZE (1000000)
 #define NAME_SIZE (1000)
+#define MAIL_BUCKET_SIZE (100000)
+#define WORD_BUCKET_SIZE (10000000)
+
+using namespace std;
+
+#include "string_hash.cpp"
+
+typedef __gnu_cxx::hash_set<int> Mail_set;
+typedef __gnu_cxx::hash_map<string, Mail_set, String_Hasher, String_Equaler> Name_map;
+typedef set<int> Ordered_mails;
+
+
 int mail_counter=0;
 char input_buffer[BUFFER_SIZE];
 char output_buffer[BUFFER_SIZE];
+Mail_set mail_set(MAIL_BUCKET_SIZE); 
+Name_map name_map(MAIL_BUCKET_SIZE);
 
 #include "io.cpp"
 #include "index.cpp"
@@ -24,7 +43,6 @@ void input_cmd(char cmd[]) {
         remove_mail(id);
     }
     else {
-        puts(cmd);
         char *from_ptr=&cmd[12];
         char *to_ptr=strstr(from_ptr, "To")+3;
         char *before_ptr=strstr(to_ptr, "Before")+7;
