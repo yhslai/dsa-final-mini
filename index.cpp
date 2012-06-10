@@ -2,8 +2,29 @@ void index_mail(int id) {
     mail_set.insert(id);
 }
 
+void index_keyword(int id, char *keyword) {
+    string word(keyword);
+    keyword_index[word].insert(id); 
+}
+
 void index_keywords(int id, char keywords[]) {
-    //TODO
+    char *p,*q;
+    p = keywords;
+    while(*p) {
+        while(!isalnum(*p) && *p)
+            p++;
+        if(*p) {
+            q = p;
+            while(isalnum(*q))
+                q++;
+            bool ending = (*q == STREND);
+            *q = STREND;
+            index_keyword(id, p);
+            if(ending)
+                break;
+            p = q + 1;
+        }
+    }
 }
 
 void index_name(int id, char from[], char to[]) {
@@ -19,6 +40,10 @@ void index_name(int id, char from[], char to[]) {
 
 void index_date(int id, int epoch) {
     date_index.insert(pair<int,int>(epoch,id));
+}
+
+bool id_exist(int id) {
+    return mail_set.find(id) != mail_set.end();
 }
 
 bool remove_index(int id) {
@@ -60,4 +85,17 @@ void search_index_date(int before, int after, Ordered_mails &result) {
         di++;
     }
     Intersection(result, matches); 
+}
+
+void search_index_keywords(char keywords[], Ordered_mails &result) {
+    char *ptr;
+    ptr = strtok(keywords, " ");
+    Mail_set &matches = keyword_index[string(ptr)];
+    result = Ordered_mails(matches.begin(), matches.end());
+    ptr = strtok(NULL, " ");
+    while(ptr) {
+        Mail_set &matches = keyword_index[string(ptr)];
+        Intersection(result, matches);
+        ptr = strtok(NULL, " ");
+    }
 }

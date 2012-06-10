@@ -23,6 +23,7 @@ using namespace std;
 
 typedef __gnu_cxx::hash_set<int> Mail_set;
 typedef __gnu_cxx::hash_map<string, Mail_set, String_Hasher, String_Equaler> Name_index;
+typedef __gnu_cxx::hash_map<string, Mail_set, String_Hasher, String_Equaler> Keyword_index;
 typedef set<int> Ordered_mails;
 typedef multimap<int, int> Date_index;
 
@@ -32,6 +33,7 @@ char output_buffer[BUFFER_SIZE];
 Mail_set mail_set(MAIL_BUCKET_SIZE); 
 Name_index name_index(MAIL_BUCKET_SIZE);
 Date_index date_index;
+Keyword_index keyword_index;
 
 #include "io.cpp"
 #include "index.cpp"

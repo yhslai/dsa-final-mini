@@ -53,24 +53,26 @@ void remove_mail(int id) {
 
 void search_mails(char from[], char to[], char before[], char after[], char keywords[]) {
     //TODO!
-    Ordered_mails result(mail_set.begin(), mail_set.end());
+    Ordered_mails result;
 
+    search_index_keywords(keywords, result);
     search_index_name(from, to, result);
     search_index_date(get_epoch(before), get_epoch(after), result);
 
-    if(result.empty()) {
-        puts("-1");
-    }
-    else {
-        Ordered_mails::iterator mi;
-        for(mi=result.begin(); mi!=result.end(); mi++) {
-            if(mi != result.begin()) {
-                putchar(' ');
-            }
-            put_int(*mi);
+    bool output=false;
+    Ordered_mails::iterator mi;
+    for(mi=result.begin(); mi!=result.end(); mi++) {
+        if(!id_exist(*mi))
+            continue;
+        if(output) {
+            putchar(' ');
         }
-        putchar('\n');
+        put_int(*mi);
+        output = true;
     }
+    if(!output)
+        p("-1");
+    putchar('\n');
     //printf("Searching from '%s' to '%s' before '%s' after '%s' keywords '%s'\n", from,to,before,after,keywords);
 }
 
