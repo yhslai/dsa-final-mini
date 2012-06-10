@@ -9,5 +9,8 @@ main: $(CODES)
 debug: $(CODES)
 	$(PP) main.cpp -o main -DDEBUG
 
+profile: $(CODES)
+	$(PP) main.cpp -o main -pg
+
 run: main
 	./main < input > output
