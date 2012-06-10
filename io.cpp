@@ -33,10 +33,10 @@ void put_int(int x) {
         ptr++;
     }
     *ptr = STREND;
-    char *ptr2 = output_buffer;
-    while(*ptr2) {
-        putchar(*ptr2);
-        ptr2++;
+    ptr--;
+    while(ptr >= output_buffer) {
+        putchar(*ptr);
+        ptr--;
     }
 }
 

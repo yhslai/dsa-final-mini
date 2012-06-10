@@ -34,12 +34,12 @@ void add_mail(char file_name[]) {
                 index_keywords(id, input_buffer);
             }
         } 
+        p("Mail "); put_int(id); p(" added, you have "); put_int(mail_set.size()); p(" mails"); puts("");
     }
     else {
         p("No file: "); p(file_name); p("!!!!\n");
         return;
     }
-    p("Mail "); put_int(id); p(" added, you have "); put_int(mail_set.size()); p(" mails"); puts("");
 }
 
 void remove_mail(int id) {
@@ -52,7 +52,6 @@ void remove_mail(int id) {
 }
 
 void search_mails(char from[], char to[], char before[], char after[], char keywords[]) {
-    //TODO!
     Ordered_mails result;
 
     search_index_keywords(keywords, result);
