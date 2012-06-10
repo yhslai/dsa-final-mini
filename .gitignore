@@ -2,3 +2,4 @@ main
 submit.zip
 */**/output
 */**/debug
+*callgrind*
