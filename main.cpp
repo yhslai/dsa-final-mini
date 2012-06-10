@@ -12,10 +12,10 @@
 #include <backward/hash_map>
 
 #define STREND ('\0')
-#define BUFFER_SIZE (1000000)
+#define BUFFER_SIZE (100000)
 #define NAME_SIZE (1000)
-#define MAIL_BUCKET_SIZE (100000)
-#define WORD_BUCKET_SIZE (10000000)
+#define MAIL_BUCKET_SIZE (10000)
+#define WORD_BUCKET_SIZE (1000000)
 
 using namespace std;
 
@@ -32,7 +32,7 @@ char output_buffer[BUFFER_SIZE];
 Mail_set mail_set(MAIL_BUCKET_SIZE); 
 Name_index name_index(MAIL_BUCKET_SIZE);
 Date_index date_index;
-Keyword_index keyword_index;
+Keyword_index keyword_index(WORD_BUCKET_SIZE);
 
 #include "io.cpp"
 #include "index.cpp"
