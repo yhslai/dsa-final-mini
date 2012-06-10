@@ -9,7 +9,7 @@ void add_mail(char file_name[]) {
         }
         if(fgets(input_buffer, BUFFER_SIZE, fptr)) {
             //Date:
-            date = get_epoch(&input_buffer[6]);
+            date = get_time(&input_buffer[6]);
         }
         if(fgets(input_buffer, BUFFER_SIZE, fptr)) {
             //Message-ID:
@@ -57,7 +57,7 @@ void search_mails(char from[], char to[], char before[], char after[], char keyw
 
     search_index_keywords(keywords, result);
     search_index_name(from, to, result);
-    search_index_date(get_epoch(before), get_epoch(after), result);
+    search_index_date(get_time(before), get_time(after), result);
 
     bool output=false;
     Ordered_mails::iterator mi;

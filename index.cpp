@@ -47,8 +47,8 @@ void index_name(int id, char from[], char to[]) {
 #endif
 }
 
-void index_date(int id, int epoch) {
-    date_index.insert(pair<int,int>(epoch,id));
+void index_date(int id, int time) {
+    date_index.insert(pair<int,int>(time,id));
 }
 
 bool id_exist(int id) {

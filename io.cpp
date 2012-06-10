@@ -52,22 +52,21 @@ int get_month(char s[]) {
     return -1;
 }
 
-int get_epoch(char date[]) {
+int get_time(char date[]) {
     if(date[0] == '-')
         return -1;
-    struct tm t;
+    int year,mon,mday,hour,min;
     char *ptr=strtok(date, " ");
-    t.tm_mday = get_int(ptr);
+    mday = get_int(ptr);
     ptr = strtok(NULL, " ");
-    t.tm_mon = get_month(ptr);
+    mon = get_month(ptr);
     ptr = strtok(NULL, " ");
-    t.tm_year = get_int(ptr) - 1900;
+    year = get_int(ptr) - 1900;
     ptr = strtok(NULL, " ");    //it's "at"
     ptr = strtok(NULL, ":");
-    t.tm_hour = get_int(ptr);
+    hour = get_int(ptr);
     ptr = strtok(NULL, " \n");
-    t.tm_min = get_int(ptr);
-    t.tm_sec = 0;
-    return mktime(&t);
+    min = get_int(ptr);
+    return year*535680 + mon*44640 + mday*1440 + hour*60 + min; 
 }
 
