@@ -10,7 +10,7 @@ debug: $(CODES)
 	$(PP) main.cpp -o main -DDEBUG
 
 profile: $(CODES)
-	$(PP) main.cpp -o main -pg
+	$(PP) main.cpp -o main -g
 
 run: main
 	./main < input > output

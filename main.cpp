@@ -27,7 +27,6 @@ typedef __gnu_cxx::hash_map<string, Mail_set, String_Hasher, String_Equaler> Key
 typedef set<int> Ordered_mails;
 typedef multimap<int, int> Date_index;
 
-int mail_counter=0;
 char input_buffer[BUFFER_SIZE];
 char output_buffer[BUFFER_SIZE];
 Mail_set mail_set(MAIL_BUCKET_SIZE); 
