@@ -4,8 +4,10 @@
 #include <cstdlib>
 #include <ctime>
 #include <cctype>
+#include <climits>
 #include <string>
 #include <set>
+#include <map>
 #include <backward/hash_set>
 #include <backward/hash_map>
 
@@ -20,15 +22,16 @@ using namespace std;
 #include "string_hash.cpp"
 
 typedef __gnu_cxx::hash_set<int> Mail_set;
-typedef __gnu_cxx::hash_map<string, Mail_set, String_Hasher, String_Equaler> Name_map;
+typedef __gnu_cxx::hash_map<string, Mail_set, String_Hasher, String_Equaler> Name_index;
 typedef set<int> Ordered_mails;
-
+typedef multimap<int, int> Date_index;
 
 int mail_counter=0;
 char input_buffer[BUFFER_SIZE];
 char output_buffer[BUFFER_SIZE];
 Mail_set mail_set(MAIL_BUCKET_SIZE); 
-Name_map name_map(MAIL_BUCKET_SIZE);
+Name_index name_index(MAIL_BUCKET_SIZE);
+Date_index date_index;
 
 #include "io.cpp"
 #include "index.cpp"

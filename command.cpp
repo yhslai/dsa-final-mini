@@ -53,12 +53,10 @@ void remove_mail(int id) {
 
 void search_mails(char from[], char to[], char before[], char after[], char keywords[]) {
     //TODO!
-    Ordered_mails result;
-    Mail_set::iterator alli;
-    for(alli=mail_set.begin(); alli!=mail_set.end(); alli++)
-        result.insert(*alli);
+    Ordered_mails result(mail_set.begin(), mail_set.end());
 
     search_index_name(from, to, result);
+    search_index_date(get_epoch(before), get_epoch(after), result);
 
     if(result.empty()) {
         puts("-1");

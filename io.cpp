@@ -53,6 +53,8 @@ int get_month(char s[]) {
 }
 
 int get_epoch(char date[]) {
+    if(date[0] == '-')
+        return -1;
     struct tm t;
     char *ptr=strtok(date, " ");
     t.tm_mday = get_int(ptr);
