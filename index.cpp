@@ -5,6 +5,9 @@ void index_mail(int id) {
 void index_keyword(int id, char *keyword) {
     string word(keyword);
     keyword_index[word].insert(id); 
+#ifdef DEBUG
+    cerr << "Index ID " << id << " with keyword '" << keyword << "'" << endl;
+#endif
 }
 
 void index_keywords(int id, char keywords[]) {
@@ -36,6 +39,12 @@ void index_name(int id, char from[], char to[]) {
     s3 += "-"; s3 += " "; s3 += to;
     name_index[s3].insert(id);
     name_index[s4].insert(id);
+#ifdef DEBUG
+    cerr << "Index ID " << id << " with name '" << s1 << "'" << endl;
+    cerr << "Index ID " << id << " with name '" << s2 << "'" << endl;
+    cerr << "Index ID " << id << " with name '" << s3 << "'" << endl;
+    cerr << "Index ID " << id << " with name '" << s4 << "'" << endl;
+#endif
 }
 
 void index_date(int id, int epoch) {
@@ -66,6 +75,9 @@ void search_index_name(char from[], char to[], Ordered_mails &result) {
     s += from; s += " "; s += to;
     Mail_set &matches = name_index[s];
     Intersection(result, matches);
+#ifdef DEBUG
+    cerr << "Search by name '" << s << "'" << endl;
+#endif
 }
 
 void search_index_date(int before, int after, Ordered_mails &result) {

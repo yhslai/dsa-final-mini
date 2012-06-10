@@ -73,6 +73,8 @@ void search_mails(char from[], char to[], char before[], char after[], char keyw
     if(!output)
         p("-1");
     putchar('\n');
-    //printf("Searching from '%s' to '%s' before '%s' after '%s' keywords '%s'\n", from,to,before,after,keywords);
+#ifdef DEBUG
+    cerr << "Search Mail from '" << from << "' to '" << to << "' before '" << before << "' after '" << after << "' keywords '" << keywords << "'" << endl;
+#endif
 }
 

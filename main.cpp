@@ -49,9 +49,9 @@ void input_cmd(char cmd[]) {
     }
     else {
         char *from_ptr=&cmd[12];
-        char *to_ptr=strstr(from_ptr, "To")+3;
-        char *before_ptr=strstr(to_ptr, "Before")+7;
-        char *after_ptr=strstr(before_ptr, "After")+6;
+        char *to_ptr=strstr(from_ptr, " To ")+4;
+        char *before_ptr=strstr(to_ptr, " Before ")+8;
+        char *after_ptr=strstr(before_ptr, " After ")+7;
         char *keywords_ptr;
         if(*after_ptr == '-')
             keywords_ptr = after_ptr+2;
